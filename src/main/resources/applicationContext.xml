@@ -8,7 +8,13 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="musicBean"
-          class="ClassicalMusic">
+          class="RockMusic">
+    </bean>
+
+    <!-- Inside on this bean dependency musicBean is injected -->
+    <bean id="musicPlayer"
+          class="MusicPlayer">
+        <constructor-arg ref = "musicBean"/>
     </bean>
 
 </beans>
