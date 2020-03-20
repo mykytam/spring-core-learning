@@ -6,9 +6,10 @@ public class TestSpring {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml"); // access applicationContext. xml file, read it and put Beans to Application Context
 
-        TestBean testBean = context.getBean("testBean", TestBean.class); // Bean id name & class, Bean of which we want to get
+        Music music = context.getBean("musicBean", Music.class); // Bean id name & class, Bean of which we want to get
 
-        System.out.println(testBean.getName());
+        MusicPlayer musicPlayer = new MusicPlayer(music); // manual dependency injection
+        musicPlayer.playMusic();
 
         context.close(); // when finished working with Application Context, connection must be closed
     }
