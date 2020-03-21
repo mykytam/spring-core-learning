@@ -10,10 +10,13 @@
     <context:property-placeholder location = "classpath:musicPlayer.properties"/> <!-- Getting from .properties -->
 
     <bean id="musicBean"
-          class="RockMusic">
+          class="ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          factory-method="getClassicalMusic">
     </bean>
 
-    <!-- Inside on this bean dependency musicBean is injected -->
+       <!-- Inside on this bean dependency musicBean is injected -->
     <bean id="musicPlayer"
           scope="singleton"
           class="MusicPlayer"> <!-- If scope="prototype", then different beans -->
