@@ -7,6 +7,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location = "classpath:musicPlayer.properties"/> <!-- Getting from .properties -->
+
     <bean id="musicBean"
           class="RockMusic">
     </bean>
@@ -14,7 +16,9 @@
     <!-- Inside on this bean dependency musicBean is injected -->
     <bean id="musicPlayer"
           class="MusicPlayer">
-        <constructor-arg ref = "musicBean"/>
+        <property name = "music" ref = "musicBean"/>  <!-- Name of setter ( without word 'set') and ref to bean -->
+        <property name = "name" value = "${musicPlayer.name}"/> <!-- Name of setter ( without word 'set') and value which we want to inject -->
+        <property name = "volume" value = "${musicPlayer.volume}"/>
     </bean>
 
 </beans>
