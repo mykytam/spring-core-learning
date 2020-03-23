@@ -1,36 +1,16 @@
 package musicplayer;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import musicplayer.config.SpringConfig;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class TestSpring {
     public static void main(String[] args) {
-        // can access this class because of Spring Context dependency
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-                "applicationContext.xml"); // access applicationContext. xml file, read it and put Beans to Application Context
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+                SpringConfig.class
+        ); // now no XML config
 
-//        Music music1 = context.getBean("rockMusic", Music.class); // Bean id (name of class) & class, Bean of which we want to get
-//        MusicPlayer rockPlayer = new MusicPlayer(music1); // manual dependency injection
-//        rockPlayer.playMusic();
-//
-//        Music music2 = context.getBean("classicalMusic", Music.class); // Bean id (name of class) & class, Bean of which we want to get
-//        MusicPlayer classicalPlayer = new MusicPlayer(music2); // manual dependency injection
-//        classicalPlayer.playMusic();
-
-//        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class); // getting musicPlayer from context
-//        musicPlayer.playMusic();
-
-//        Computer computer = context.getBean("computer", Computer.class);
-//        System.out.println(computer);
-
-        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class); // getting musicPlayer from context
-
-        System.out.println(musicPlayer.getName());
-        System.out.println(musicPlayer.getVolume());
-
-        ClassicalMusic classicalMusic1 = context.getBean("classicalMusic", ClassicalMusic.class);
-        ClassicalMusic classicalMusic2 = context.getBean("classicalMusic", ClassicalMusic.class);
-        System.out.println(classicalMusic1 == classicalMusic2); // false, 'cause @Scope ("prototype")
-
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        System.out.println(musicPlayer.playMusic());
 
         context.close(); // when finished working with Application Context, connection must be closed
 

@@ -1,8 +1,7 @@
-package musicplayer;
+package musicplayer.genres;
 
-import org.springframework.stereotype.Component;
+import musicplayer.Music;
 
-@Component
 public class RockMusic implements Music {
     @Override
     public String getSong() { return "Wind Cries Mary"; }
